@@ -66,21 +66,10 @@ public class Dates {
             month = Integer.parseInt(dateParts[1]);
             year = Integer.parseInt(dateParts[2]);
         } catch (Exception e) {
+            System.out.println(e);
             return false;
         }
-
-        if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && (1 <= day && day <= 31)) {
-            return true;
-        } else if ((month <= 12 && month != 2) && (1 <= day && day <= 30)) {
-            return true;
-        } else if (month == 2) {
-            if ((year % 4 == 0) && (1 <= day && day <= 29)) {
-                return true;
-            } else if (1 <= day && day <= 28) {
-                return true;
-            }
-        }
-        return false;
+        return dateValidation(day, month, year);
     }
 
     //option 2
@@ -262,7 +251,6 @@ public class Dates {
         int countDayRepeat = 0;
         for (int i = 1; i <= monthDays + firstWeekDay; i++) {
             if (i > firstWeekDay) {
-
                 if (i % 7 == dayOfWeek) {
                     countDayRepeat++;
                 }
